@@ -1,0 +1,36 @@
+#!/bin/sh
+
+# PLUGIN: WM TEMP CHECK
+# AUTHOR: DAN MONGE @MACITPROS
+# DATE:   MAY/04/2018
+
+# Custom plugin for Watchman Monitoring to alert when Mac is temperature is running above
+# 100ºC (212ºF) or any fans have a minimum speed of 100 RPM. Over 100ºC indicates a physical
+# inspection of the computer is necessary as it may be over heating. Fan speed of less
+# then 500 RPM indicates a fan that may be failing (especially if it is at 0 RPM)
+
+# Binary built from SMCKit AUTHOR: beltex
+# https://github.com/beltex/SMCKit
+
+# Additional information I'd like to setup, a preference pane option
+# to set the temperature threshold, disable certain sensor monitors.
+# adjust the fan speed number.
+
+# Runs the Binary and gets the information to set as a variable
+TEMPNFANS="$(/Library/MonitoringClient/Utilities/smckit)"
+
+# Finds the highest temperature
+HIGHTEMPS=$(echo "${TEMPNFANS}" | awk '/°C/ {print $2}' | awk -F'[^0-9]*' '{print $4}' | sort -rk 3 | head -n 1)
+
+# Finds the lowest fan speed
+LOWFANSPEED=$(echo "${TEMPNFANS}" | awk '/RPM/ {print $2}' | awk -F'[^0-9]*' '{print ;}' | sort -nk 3 | head -n 1)
+
+# CHECK FOR LOW FANS SPEED OR HIGH TEMP (LOWFANSPEED testing at 2000, HIGHTEMPS testing at 50º)
+if [ "$LOWFANSPEED" -lt "500" ] || [ "$HIGHTEMPS" -gt "100" ]
+then
+echo "High temperature or fan issue found $TEMPNFANS"
+exit 20
+else
+echo "No temperature or fan issues to report $TEMPNFANS"
+exit 0
+fi
