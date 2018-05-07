@@ -23,21 +23,21 @@ TEMPNFANS="$(/Library/MonitoringClient/Utilities/smckit)"
 HIGHTEMPS=$(echo "${TEMPNFANS}" | awk '/°C/ {print $2}' | awk -F'[^0-9]*' '{print $4}' | sort -rk 3 | head -n 1)
 
 # Finds the lowest fan speed (not currently working)
-#LOWFANSPEED=$(echo "${TEMPNFANS}" | awk '/RPM/ {print $2}' | awk -F'[^0-9]*' '{print ;}' | sort -nk 3 | head -n 1)
+LOWFANSPEED=$(echo "${TEMPNFANS}" | awk '/RPM/ {print $2}' | grep -o '[0-9][0-9][0-9][0-9]' | sort -nk 3 | head -n 1)
 
 # CHECK FOR LOW FANS SPEED OR HIGH TEMP (LOWFANSPEED testing at 2000, HIGHTEMPS testing at 50º)
-#if (( $LOWFANSPEED < 500 )) || [ "$HIGHTEMPS" -gt "100" ]
+if (( $LOWFANSPEED < 500 )) || [ "$HIGHTEMPS" -gt "100" ]
 
 # Just temp check
-if [ "$HIGHTEMPS" -gt "100" ]
+#if [ "$HIGHTEMPS" -gt "100" ]
 
 # Just fan speed check (works!)
 #if (( $LOWFANSPEED < 2000 ))
 
 then
-echo "High temperature or fan issue found\n$TEMPNFANS"
+echo "High temperature or fan issue found.\nFans below 500 RPM or temp above 100ºC\n$TEMPNFANS"
 exit 20
 else
-echo "No temperature or fan issues to report\n$TEMPNFANS"
+echo "No temperature or fan issues to report.\nFans above 500 RPM or temp below 100ºC\n$TEMPNFANS"
 exit 0
 fi
