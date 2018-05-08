@@ -1,5 +1,5 @@
 # wm-temp
-Watchman Monitoring plugin that uses SMCkit to monitor temperature sensors
+Watchman Monitoring plugin that uses SMCkit to monitor temperature sensors and fan speed.
 
 Binary built from SMCkit: https://github.com/beltex/SMCKit (requires macOS (Mac OS X) 10.9 or later)
 
