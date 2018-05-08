@@ -34,10 +34,11 @@ if (( $LOWFANSPEED < 500 )) || [ "$HIGHTEMPS" -gt "100" ]
 # Just fan speed check (works!)
 #if (( $LOWFANSPEED < 2000 ))
 
+# sed used after echo to clean up output to Watchman Monitoring dashboard.
 then
-echo "High temperature or fan issue found.\nFans below 500 RPM or temp above 100ºC\n$TEMPNFANS"
+echo "High temperature or fan issue found.\nFans below 500 RPM or temp above 100ºC\n$TEMPNFANS" | sed 's/\[0;0m//g'
 exit 20
 else
-echo "No temperature or fan issues to report.\nFans above 500 RPM or temp below 100ºC\n$TEMPNFANS"
+echo "No temperature or fan issues to report.\nFans above 500 RPM or temp below 100ºC\n$TEMPNFANS" | sed 's/\[0;0m//g'
 exit 0
 fi

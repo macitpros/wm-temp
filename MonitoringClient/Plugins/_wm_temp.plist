@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>PluginName</key>
-	<string>Temperature and Fan Speed</string>
+	<string>_Temperature and Fan Speed</string>
 	<key>PluginVersion</key>
-	<string>0.1</string>
+	<string>0.2</string>
 	<key>ProgramArguments</key>
 	<array>
 		<string>_wm_temp.plugin</string>
