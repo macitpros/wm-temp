@@ -3,7 +3,7 @@ Watchman Monitoring plugin that uses SMCkit to monitor temperature sensors and f
 
 [Binary](https://github.com/macitpros/wm-temp/tree/master/MonitoringClient/Utilities) built from SMCkit: https://github.com/beltex/SMCKit (requires macOS (Mac OS X) 10.9 or later)
 
-Custom plugin for [Watchman Monitoring](https://www.watchmanmonitoring.com) to provide an informational warning when Mac is temperature is running above 100ºC (212ºF) or any fans have a minimum speed of 500 RPM. Over 100ºC indicates a physical inspection of the computer is necessary as it may be overheating. Fan speed of less then 500 RPM indicates a fan that may be failing (especially if it is at 0 RPM).
+Custom plugin for [Watchman Monitoring](https://www.watchmanmonitoring.com) to provide a warning when Mac is temperature is running above 80ºC (175ºF) or any fans have a minimum speed of 500 RPM. Over 80ºC indicates a physical inspection of the computer is necessary as it may be overheating. Fan speed of less then 500 RPM indicates a fan that may be failing (especially if it is at 0 RPM).
 
 Installer package available [here](https://github.com/macitpros/wm-temp/raw/master/wm-temp-fans/build/wm-temp-fans.pkg)
 
