@@ -5,7 +5,7 @@
 # DATE:   MAY/04/2018
 
 # Custom plugin for Watchman Monitoring to alert when Mac is temperature is running above
-# 100ºC (212ºF) or any fans have a minimum speed of 100 RPM. Over 100ºC indicates a physical
+# 80ºC (175ºF) or any fans have a minimum speed of 500 RPM. Over 80ºC indicates a physical
 # inspection of the computer is necessary as it may be over heating. Fan speed of less
 # then 500 RPM indicates a fan that may be failing (especially if it is at 0 RPM)
 
@@ -13,7 +13,7 @@
 # https://github.com/beltex/SMCKit
 
 # Additional information I'd like to setup, a preference pane option
-# to set the temperature threshold, disable certain sensor monitors.
+# to set the temperature threshold, disable certain sensor monitors,
 # adjust the fan speed number.
 
 # Runs the Binary and gets the information to set as a variable
@@ -27,19 +27,19 @@ HIGHTEMPS=$(echo "${TEMPNFANS}" | awk '/°C/ {print $2}' | awk -F'[^0-9]*' '{pri
 LOWFANSPEED=$(echo "${TEMPNFANS}" | awk '/RPM/ {print $2}' | grep -o '[0-9][0-9][0-9][0-9]' | sort -nk 3 | head -n 1)
 
 # CHECK FOR LOW FANS SPEED OR HIGH TEMP (LOWFANSPEED testing at 2000, HIGHTEMPS testing at 50º)
-if (( $LOWFANSPEED < 500 )) || [ "$HIGHTEMPS" -gt "100" ]
+if (( $LOWFANSPEED < 500 )) || [ "$HIGHTEMPS" -gt "80" ]
 
-# Just temp check
-#if [ "$HIGHTEMPS" -gt "100" ]
+# Just for testing - temp check
+#if [ "$HIGHTEMPS" -gt "50" ]
 
-# Just fan speed check (works!)
+# Just for testing - fan speed check 
 #if (( $LOWFANSPEED < 2000 ))
 
 # sed used after echo to clean up output to Watchman Monitoring dashboard.
 then
-echo "High temperature or fan issue found.\nFans below 500 RPM or temp above 100ºC\n$TEMPNFANS" | sed 's/\[0;0m//g'
-exit 20
+echo "High temperature or fan issue found.\nFans below 500 RPM or temp above 80ºC\n$TEMPNFANS" | sed 's/\[0;0m//g'
+exit 2
 else
-echo "No temperature or fan issues to report.\nFans above 500 RPM or temp below 100ºC\n$TEMPNFANS" | sed 's/\[0;0m//g'
+echo "No temperature or fan issues to report.\nFans above 500 RPM or temp below 80ºC\n$TEMPNFANS" | sed 's/\[0;0m//g'
 exit 0
 fi
