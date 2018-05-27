@@ -18,7 +18,7 @@
 
 # Runs the Binary and gets the information to set as a variable
 # sed to remove extraneous information from output
-TEMPNFANS="$(/Library/MonitoringClient/Utilities/smckit  | sed -n '/-- Power --/q;p')"
+TEMPNFANS="$(/Library/MonitoringClient/Utilities/smckit  | sed -n '/-- Power --/q;p' | sed '/CPU_0_DIE/d' | sed '/HDD_PROXIMITY/d')"
 
 # Finds the highest temperature
 HIGHTEMPS=$(echo "${TEMPNFANS}" | awk '/°C/ {print $2}' | awk -F'[^0-9]*' '{print $4}' | sort -rk 3 | head -n 1)
