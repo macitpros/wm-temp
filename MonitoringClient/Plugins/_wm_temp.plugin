@@ -21,10 +21,10 @@
 TEMPNFANS="$(/Library/MonitoringClient/Utilities/smckit  | sed -n '/-- Power --/q;p' | sed '/CPU_0_DIE/d' | sed '/HDD_PROXIMITY/d')"
 
 # Finds the highest temperature
-HIGHTEMPS=$(echo "${TEMPNFANS}" | awk '/°C/ {print $2}' | awk -F'[^0-9]*' '{print $4}' | sort -rk 3 | head -n 1)
+HIGHTEMPS=$(echo "${TEMPNFANS}" | awk '/°C/ {print $2}' | sed 's/\[0;0m//g' | grep -Eo '[0-9]{1,3}' | sort -nri | head -n 1)
 
 # Finds the lowest fan speed
-LOWFANSPEED=$(echo "${TEMPNFANS}" | awk '/RPM/ {print $2}' | sed 's/\[0;0m//g' | grep -Eo '[0-9]{1,4}' | sort -nk 3 | head -n 1)
+LOWFANSPEED=$(echo "${TEMPNFANS}" | awk '/RPM/ {print $2}' | sed 's/\[0;0m//g' | grep -Eo '[0-9]{1,4}' | sort -ni | head -n 1)
 
 # CHECK FOR LOW FANS SPEED OR HIGH TEMP (LOWFANSPEED testing at 2000, HIGHTEMPS testing at 50º)
 if (( $LOWFANSPEED < 500 )) || [ "$HIGHTEMPS" -gt "80" ]

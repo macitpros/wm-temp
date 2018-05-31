@@ -5,7 +5,7 @@
 	<key>PluginName</key>
 	<string>_Temperature and Fan Speed</string>
 	<key>PluginVersion</key>
-	<string>0.4.5.0</string>
+	<string>0.5.0.0</string>
 	<key>ProgramArguments</key>
 	<array>
 		<string>_wm_temp.plugin</string>
