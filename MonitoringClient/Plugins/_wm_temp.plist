@@ -4,6 +4,8 @@
 <dict>
 	<key>PluginName</key>
 	<string>_Temperature and Fan Speed</string>
+	<key>PluginUUID</key>
+	<string>e546a0c2-27c9-4fc9-bafc-c1d03a5fb2c9</string>
 	<key>PluginVersion</key>
 	<string>0.6.0.0</string>
 	<key>ProgramArguments</key>
