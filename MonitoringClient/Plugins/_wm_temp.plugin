@@ -30,7 +30,7 @@ LOWFANSPEED=$(echo "${TEMPNFANS}" | awk '/RPM/ {print $2}' | grep -Eo '[0-9]{1,4
 AVERAGETEMPS=$(echo "$TEMPNFANS" | sed -n '/-- Temperature/,/^-- Fan/p' | sed '1d;$d' | awk '{if ($2 > 0) {sum+=$2;y+=1;}} END{print sum/y}' | xargs printf "%.0f\n")
 
 # Temp check - Warn if any sensor is above 100ºC
-if (($HIGHTEMPS > 100)); then
+if (("$HIGHTEMPS" > "100")); then
 echo "High temperature issue found.\nTemperature above 100ºC\n$TEMPNFANS" | sed 's/\[0;0m//g' | sed 's/[^[:print:]\t]//g'
 exit 2
 
