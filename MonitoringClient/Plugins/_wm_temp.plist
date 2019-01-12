@@ -7,7 +7,7 @@
 	<key>PluginUUID</key>
 	<string>e546a0c2-27c9-4fc9-bafc-c1d03a5fb2c9</string>
 	<key>PluginVersion</key>
-	<string>0.7.0.6</string>
+	<string>0.7.0.7</string>
 	<key>ProgramArguments</key>
 	<array>
 		<string>_wm_temp.plugin</string>
