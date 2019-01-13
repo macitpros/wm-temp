@@ -7,6 +7,8 @@ Custom plugin for [Watchman Monitoring](https://www.watchmanmonitoring.com) to p
 
 Fan speed of less then 200 RPM indicates a fan that _may_ be having issue, but not necessarly. Some Macs will idle fans at 0 RPM. Fan speed is for informational purposes only, it _may_ indicate a need to physically inspect the Mac or a fan cleaning may be required due to excessive dust in the fans.
 
+New for v.0.7.1.0 Average temperature reported. An informational warning will be provided if average is above 60ºC. High average temperature, plus low fan speed is a good indicator of a potenial overheating issue that warrants further physical inspection.
+
 Installer package available [here](https://github.com/macitpros/wm-temp/raw/master/wm-temp-fans/build/wm-temp-fans.pkg)
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
