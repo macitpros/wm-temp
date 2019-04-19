@@ -34,7 +34,7 @@ AVERAGETEMPS=$(echo "$TEMPNFANS" | sed -n '/-- Temperature/,/^-- Fan/p' | tr -cd
 
 # Temp check - Warn if any sensor is above 100ºC
 if (("$HIGHTEMPS" > "100")); then
-echo "High temperature issue found.\nTemperature above 100ºC\n$TEMPNFANS" | sed 's/[^[:print:]\t]//g'
+echo "High temperature issue found.\nA single sensor temperature is at or above 100ºC \nAverage temperature is ""$AVERAGETEMPS""°C\n\n$TEMPNFANS\n" | sed 's/[^[:print:]\t]//g'
 exit 2
 
 # Fan speed check - Informational below 200 RPM
