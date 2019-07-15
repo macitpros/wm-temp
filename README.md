@@ -5,7 +5,7 @@ Watchman Monitoring plugin that uses SMCkit to monitor temperature sensors and f
 
 Custom plugin for [Watchman Monitoring](https://www.watchmanmonitoring.com) to provide a warning (email or ticket) when a single sensor temperature is running above 100ºC (212ºF). Over 100ºC indicates a physical inspection of the computer should be done as it may be overheating (or getting very close). 
 
-Fan speed of less then 200 RPM indicates a fan that _may_ be having issue, but not necessarly. Some Macs will idle fans at 0 RPM. Fan speed is for informational purposes only, it _may_ indicate a need to physically inspect the Mac or a fan cleaning may be required due to excessive dust in the fans.
+Fan speed of less then 200 RPM indicates a fan that _may_ be having issue, but not necessarily. Some Macs will idle fans at 0 RPM. Fan speed is for informational purposes only, it _may_ indicate a need to physically inspect the Mac or a fan cleaning may be required due to excessive dust in the fans.
 
 New for v.0.7.1.0 Average temperature reported. An informational warning will be provided if average is above 60ºC. High average temperature, plus low fan speed is a good indicator of a potenial overheating issue that warrants further physical inspection.
 
